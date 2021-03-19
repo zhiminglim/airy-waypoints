@@ -8,7 +8,6 @@ var rp = require('request-promise');
 
 
 app.get("/", (req, res) => {
-  // console.log(API_KEY);
   res.send("Express API server is up and running! Testing changes.");
 })
 
@@ -80,9 +79,7 @@ app.get("/api/v1/busy-waypoints", (req, res) => {
       }
     }
 
-    console.log(JSON.stringify(finalResultForJSON));
-    res.send(JSON.stringify(finalResultForJSON));
-    
+    res.json(finalResultForJSON);
   }
 
   doRequests()
