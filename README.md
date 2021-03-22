@@ -54,6 +54,7 @@ As I have been learning Javascript in my spare time, I decided to use that knowl
 
 *Side note: There was no particular reason choosing Javascript over Java for this web service in terms of performance (this is a whole separate topic on its own). It was simply because I have been building web services with Javascript in my spare time* 😆
 
+<br />
 
 ## The Functionality
 
@@ -70,15 +71,18 @@ The actual responses are shown in the images below, but you may also head over t
 <br />
 
 **GET /api/v1/sids/busy-waypoints**
+
 https://busy-waypoints.azurewebsites.net/api/v1/sids/busy-waypoints
 ![readme-api-get-sids-json](https://user-images.githubusercontent.com/21197092/111905225-874a2980-8a85-11eb-94f8-13c3e99f7a84.png)
 
 <br />
 
 **GET /api/v1/stars/busy-waypoints**
+
 https://busy-waypoints.azurewebsites.net/api/v1/stars/busy-waypoints
 ![readme-api-get-stars-json](https://user-images.githubusercontent.com/21197092/111905231-887b5680-8a85-11eb-84df-ddf424438e6e.png)
 
+<br />
 
 ## The Code
 
@@ -99,6 +103,7 @@ Finally I processed the map to return a sorted array, where I would extract out 
 
 The same is done for STARs statistics.
 
+<br />
 
 ## The Test
 With Node.js I used a testing library called [Mocha](https://mochajs.org/), and paired it with assertion libraries like [Chai](https://www.chaijs.com/) and [Should](https://shouldjs.github.io/), which provides BDD/TDD styles.
@@ -136,10 +141,11 @@ After setting up the installations and test script in package.json, I simply had
 $ npm test
 ```
 
-and the result will be as followed:
+and receive a response from the test script:
 
 ![npm-test-example](https://user-images.githubusercontent.com/21197092/111941264-a095b900-8b0b-11eb-9882-c8d620cfe96a.png)
 
+<br />
 
 ## The CI/CD
 
@@ -150,6 +156,8 @@ For my personal projects I've learnt to deploy my applications to platforms like
 I started with creating a Resource Group in Azure, followed by creating an Azure Container Registry (ACR), which is like a repository that is able to host Docker images.
 
 ![azure-acr-page](https://user-images.githubusercontent.com/21197092/111942392-26b2ff00-8b0e-11eb-972e-4423282d5882.png)
+
+<br />
 
 To use Docker, I created a **Dockerfile** so that Docker can build images automatically by reading the instructions written inside. This file will be in the root directory of the app.
 
@@ -163,14 +171,18 @@ Next, I head over to Azure DevOps, and created a new project with a new pipeline
 *Build success:*
 ![azure-pipeline-build-success](https://user-images.githubusercontent.com/21197092/111956382-aef0ce80-8b25-11eb-9fde-b67b0cf8c49d.png)
 
+<br />
+
 When the pipeline build has completed, it means that the built Docker image has now been pushed to the Azure Container Registry (ACR).
 
+
 **Deployment**
+
 With the ACR image ready, I created a Web App in Azure, and configure it to publish with Docker by selecting the image from ACR.
 
 ![azure-web-app-config](https://user-images.githubusercontent.com/21197092/111957285-c67c8700-8b26-11eb-9fbf-924d7847eb03.png)
 
-After turning Continuous Deployment *"On"* in the Deployment Center settings, Azure creates a Webhook in the ACR so that whenever I push to the master branch in GitHub, the changes are automatically updated on the web app.
+After turning Continuous Deployment *"On"* in the Deployment Center settings, Azure creates a Webhook in the ACR so that whenever I push to the master branch in GitHub, the changes are automatically updated on the web app. 😊
 
 *Website URL available at:*
 https://busy-waypoints.azurewebsites.net/
@@ -179,6 +191,7 @@ https://busy-waypoints.azurewebsites.net/
 https://busy-waypoints.azurewebsites.net/api/v1/sids/busy-waypoints
 https://busy-waypoints.azurewebsites.net/api/v1/stars/busy-waypoints
 
+<br />
 
 ## The Easter Egg
 
@@ -190,12 +203,16 @@ For visualization, I used the [CanvasJS](https://canvasjs.com/) library which pr
 
 ![gameofwits-airlab-example-sids](https://user-images.githubusercontent.com/21197092/111959266-30962b80-8b29-11eb-8871-93e87b6d8922.png)
 
+<br />
+
 ## Feedback and Takeaways
 
 - Very engaging tech challenge that provided a lot of avenue for learning
 - Opportunity to leverage theoretical knowledge of topics like containerization, CI/CD, and put them into practice
 - Learned how to use Azure, Azure DevOps and pipelines
 - Explored TDD and BDD frameworks
+
+<br />
 
 ## Others
 
@@ -209,7 +226,7 @@ For visualization, I used the [CanvasJS](https://canvasjs.com/) library which pr
 - Right now testing is being done locally, but I would like to learn how to integrate testing into the pipeline
 - Reduce latency for web service requests
 
-
+<br />
 
 ## References
 
@@ -224,3 +241,4 @@ For visualization, I used the [CanvasJS](https://canvasjs.com/) library which pr
 - [AIR Lab](https://www.airlab.aero/)
 - [StackEdit](https://stackedit.io/)
 
+<br />
