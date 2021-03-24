@@ -88,7 +88,7 @@ https://busy-waypoints.azurewebsites.net/api/v1/stars/busy-waypoints
 
 *(logic in <a href="https://github.com/zhiminglim/airy-waypoints/blob/master/index.js" target="_blank">index.js</a>)*
 
-As I had to make 2 different API requests, the first being to retrieve a list of airports, and the second which is to retrieve a list of SIDs for each airport, I made use of **async/await** in Javascript to handle fetching of consecutive requests that require information from the previous request *(in this case, I needed to know the list of airports before retrieving the list of SIDs)*.
+As I had to make 2 different API requests, the first being to retrieve a list of airports, and the second which is to retrieve a list of SIDs for each airport, I made use of **async/await** in Javascript to handle fetching of consecutive asynchronous requests that require information from the previous request *(in this case, I needed to know the list of airports before retrieving the list of SIDs)*.
 
 After getting all the information I needed, I looped through the lists of SIDs, and for each SID, I keep records of the waypoints by using a Javascript Map object, structured in the example here where I used the waypoint as the *key*, and a counter as the *value*:
 
@@ -135,7 +135,7 @@ describe("Busy Waypoints Finder", () => {
 
 ```
 
-After setting up the installations and test script in package.json, I simply had to run tests with:
+After setting up the installations and test script in package.json, I run tests with
 
 ```bash
 $ npm test
@@ -147,13 +147,26 @@ and receive a response from the test script:
 
 <br />
 
+After that, I installed a code coverage library called [Istanbul](https://istanbul.js.org/), that works well with mocha. Upon re-running the test command
+```bash
+npm test
+``` 
+and we get the following report:
+
+![airlab-test-coverage](https://user-images.githubusercontent.com/21197092/112312209-857ca200-8ce1-11eb-9837-ed21c7a4d432.png)
+
+With the above code coverage, it is not perfect and there are room to improve, but it is a start for the first iteration. 😊
+
+
+<br />
+
 ## The CI/CD
 
 Now the DevOps/fun part! 🥳
 
-For my personal projects I've learnt to deploy my applications to platforms like Heroku and Netlify, but I wanted to learn how to do it on Azure this time.
+For my personal projects I've learnt to deploy my applications to platforms like Heroku and Netlify, but I wanted to learn how to do it on Azure.
 
-I started with creating a Resource Group in Azure, followed by creating an Azure Container Registry (ACR), which is like a repository that is able to host Docker images.
+So I started with creating a Resource Group in Azure, followed by creating an Azure Container Registry (ACR), which is like a repository that is able to host Docker images.
 
 ![azure-acr-page](https://user-images.githubusercontent.com/21197092/111942392-26b2ff00-8b0e-11eb-972e-4423282d5882.png)
 
@@ -185,10 +198,13 @@ With the ACR image ready, I created a Web App in Azure, and configure it to publ
 After turning Continuous Deployment *"On"* in the Deployment Center settings, Azure creates a Webhook in the ACR so that whenever I push to the master branch in GitHub, the changes are automatically updated on the web app. 😊
 
 *Website URL available at:*
+
 https://busy-waypoints.azurewebsites.net/
 
 *Endpoints:*
+
 https://busy-waypoints.azurewebsites.net/api/v1/sids/busy-waypoints
+
 https://busy-waypoints.azurewebsites.net/api/v1/stars/busy-waypoints
 
 <br />
@@ -201,7 +217,7 @@ You may head over to my app at https://gameofwits.netlify.app/ and click on the 
 
 For visualization, I used the [CanvasJS](https://canvasjs.com/) library which provides an API to display a nice and simple chart for the information collected. 📊
 
-![gameofwits-airlab-example-sids](https://user-images.githubusercontent.com/21197092/111959266-30962b80-8b29-11eb-8871-93e87b6d8922.png)
+![airlab-frontend-example-sid](https://user-images.githubusercontent.com/21197092/112331427-dd240900-8cf3-11eb-94a8-a3964817443f.png)
 
 <br />
 
@@ -218,11 +234,14 @@ For visualization, I used the [CanvasJS](https://canvasjs.com/) library which pr
 
 
 📝 *How would I work differently if this was a two week sprint:*
+
 - Make use of scrum artifacts like the product backlog and sprint backlog
 - Daily scrum to answer questions that help to achieve sprint goal
 - Create a trello board to manage the above
 
 📦 *Improve code for production quality:*
+
+- Improve test code coverage
 - Right now testing is being done locally, but I would like to learn how to integrate testing into the pipeline
 - Reduce latency for web service requests
 
