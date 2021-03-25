@@ -66,7 +66,7 @@ First, a small introduction on the technologies used. **Express** is a minimal a
 ```
 
 ### Response Samples
-The actual responses are shown in the images below, but you may also head over to the hosted web app by clicking on the following links to have a look as well (more on how this is hosted later on).  🙂
+The actual responses are shown in the images below, but you may also have a look at the raw JSON data yourself by clicking on the following links which will direct you to the hosted web service (more on how this is hosted later on).  🙂
 
 <br />
 
@@ -148,8 +148,9 @@ and receive a response from the test script:
 <br />
 
 After that, I installed a code coverage library called [Istanbul](https://istanbul.js.org/), that works well with mocha. Upon re-running the test command
+
 ```bash
-npm test
+$ npm test
 ``` 
 and we get the following report:
 
@@ -164,42 +165,50 @@ With the above code coverage, it is not perfect and there are room to improve, b
 
 Now the DevOps/fun part! 🥳
 
-For my personal projects I've learnt to deploy my applications to platforms like Heroku and Netlify, but I wanted to learn how to do it on Azure.
+For my personal projects I've been deploying my applications to platforms like Heroku and Netlify, but I wanted to learn how to deploy this web service to Azure this time.
 
 So I started with creating a Resource Group in Azure, followed by creating an Azure Container Registry (ACR), which is like a repository that is able to host Docker images.
 
 ![azure-acr-page](https://user-images.githubusercontent.com/21197092/111942392-26b2ff00-8b0e-11eb-972e-4423282d5882.png)
+*(a screenshot of the ACR)*
 
 <br />
-
-To use Docker, I created a **Dockerfile** so that Docker can build images automatically by reading the instructions written inside. This file will be in the root directory of the app.
 
 Next, I head over to Azure DevOps, and created a new project with a new pipeline to automate the building and pushing of a docker image which is based on my code on GitHub.
 
-*Configuring the pipeline:*
 
 ![azure-pipeline-creation](https://user-images.githubusercontent.com/21197092/111954995-e2caf480-8b23-11eb-9dfd-5f5fddac84fc.png)
-
-
-*Build success:*
-![azure-pipeline-build-success](https://user-images.githubusercontent.com/21197092/111956382-aef0ce80-8b25-11eb-9fde-b67b0cf8c49d.png)
+*(Configuring the pipeline)*
 
 <br />
 
-When the pipeline build has completed, it means that the built Docker image has now been pushed to the Azure Container Registry (ACR).
+Also to point out, I had already created a **Dockerfile** so that Docker can build images automatically by reading the instructions written inside. This file will be in the root directory of the app, and the pipeline will be configured to refer to this as seen in the image above.
 
+When the pipeline is configured, changes to the GitHub repository master branch will trigger a build.
+
+<br />
+
+![azure-pipeline-build-success](https://user-images.githubusercontent.com/21197092/111956382-aef0ce80-8b25-11eb-9fde-b67b0cf8c49d.png)
+*(Example of a successful build)*
+<br />
+
+After the pipeline job is completed, it means that the built Docker image has now been pushed to the Azure Container Registry (ACR).
+
+<br />
 
 **Deployment**
 
-With the ACR image ready, I created a Web App in Azure, and configure it to publish with Docker by selecting the image from ACR.
+With the ACR image ready, I move on to the final step to create a Web App in Azure, and configure it to publish with Docker by selecting the image from ACR.
 
 ![azure-web-app-config](https://user-images.githubusercontent.com/21197092/111957285-c67c8700-8b26-11eb-9fbf-924d7847eb03.png)
 
-After turning Continuous Deployment *"On"* in the Deployment Center settings, Azure creates a Webhook in the ACR so that whenever I push to the master branch in GitHub, the changes are automatically updated on the web app. 😊
+I will also turn Continuous Deployment *"On"* in the Deployment Center settings. This means that Azure will create a Webhook in the ACR so that whenever I push to the master branch in GitHub, the changes are triggered on the pipeline, a docker image is built and pushed to ACR, and this latest image is deployed for the web service.
 
-*Website URL available at:*
+In layman terms, changes are **automatically updated** on the web app. 😊
 
-https://busy-waypoints.azurewebsites.net/
+<br />
+
+*Website URL available at:* https://busy-waypoints.azurewebsites.net/
 
 *Endpoints:*
 
@@ -241,9 +250,10 @@ For visualization, I used the [CanvasJS](https://canvasjs.com/) library which pr
 
 📦 *Improve code for production quality:*
 
+- Refactor code for reusability and readability
 - Improve test code coverage
-- Right now testing is being done locally, but I would like to learn how to integrate testing into the pipeline
-- Reduce latency for web service requests
+- Integrate testing into the pipeline
+- Polling on the frontend
 
 <br />
 
