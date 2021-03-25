@@ -52,7 +52,7 @@ AIR Lab has provided endpoints for accessing services provided by the Open ATMS 
 
 As I have been learning Javascript in my spare time, I decided to use that knowledge to build a stand-alone web service with **Node.js** and **Express**, and then call the APIs in my personal website to display the JSON data in a user friendly manner.
 
-*Side note: There was no particular reason choosing Javascript over Java for this web service in terms of performance (this is a whole separate topic on its own). It was simply because I have been building web services with Javascript in my spare time* 😆
+*Side note: There was no particular reason choosing Javascript over Java for this web service in terms of performance. It was simply because I have been building web apps with Javascript in my spare time and found it faster to set up.* 😆
 
 <br />
 
@@ -174,7 +174,7 @@ So I started with creating a Resource Group in Azure, followed by creating an Az
 
 <br />
 
-Next, I head over to Azure DevOps, and created a new project with a new pipeline to automate the building and pushing of a docker image which is based on my code on GitHub.
+Next, I head over to Azure DevOps, and created a new project with a new pipeline to automate the building and pushing of a docker image (to ACR) which is based on my code on GitHub.
 
 
 ![azure-pipeline-creation](https://user-images.githubusercontent.com/21197092/111954995-e2caf480-8b23-11eb-9dfd-5f5fddac84fc.png)
@@ -208,9 +208,8 @@ In layman terms, changes are **automatically updated** on the web app. 😊
 
 <br />
 
-*Website URL available at:* https://busy-waypoints.azurewebsites.net/
 
-*Endpoints:*
+*Endpoints (in case you missed the links previously):*
 
 https://busy-waypoints.azurewebsites.net/api/v1/sids/busy-waypoints
 
@@ -253,7 +252,7 @@ For visualization, I used the [CanvasJS](https://canvasjs.com/) library which pr
 - Refactor code for reusability and readability
 - Improve test code coverage
 - Integrate testing into the pipeline
-- Polling on the frontend
+- Polling on the frontend, improve frontend UI/UX
 
 <br />
 
