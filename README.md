@@ -71,14 +71,14 @@ The actual responses are shown in the images below, but you may also have a look
 **GET /api/v1/sids/busy-waypoints**
 
 https://busy-waypoints.azurewebsites.net/api/v1/sids/busy-waypoints
-![readme-api-get-sids-json](https://user-images.githubusercontent.com/21197092/111905225-874a2980-8a85-11eb-94f8-13c3e99f7a84.png)
+![json-sids-updated](https://user-images.githubusercontent.com/21197092/112435242-72201400-8d7f-11eb-8274-7902648c6740.png)
 
 <br />
 
 **GET /api/v1/stars/busy-waypoints**
 
 https://busy-waypoints.azurewebsites.net/api/v1/stars/busy-waypoints
-![readme-api-get-stars-json](https://user-images.githubusercontent.com/21197092/111905231-887b5680-8a85-11eb-84df-ddf424438e6e.png)
+![json-stars-updated](https://user-images.githubusercontent.com/21197092/112435253-75b39b00-8d7f-11eb-8d69-e41602de1069.png)
 
 <br />
 
