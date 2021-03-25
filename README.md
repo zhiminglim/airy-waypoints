@@ -52,8 +52,6 @@ AIR Lab has provided endpoints for accessing services provided by the Open ATMS 
 
 As I have been learning Javascript in my spare time, I decided to use that knowledge to build a stand-alone web service with **Node.js** and **Express**, and then call the APIs in my personal website to display the JSON data in a user friendly manner.
 
-*Side note: There was no particular reason choosing Javascript over Java for this web service in terms of performance. It was simply because I have been building web apps with Javascript in my spare time and found it faster to set up.* 😆
-
 <br />
 
 ## The Functionality
